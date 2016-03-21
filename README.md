@@ -1,22 +1,27 @@
 # Debate Timer @Arduino
-> **FIRST REPOSITORY OF iDEMKORS**  
+> **FIRST REPOSITORY OF iDEMKORS ON GitHub**  
 A timer for debate competition based on Arduino  
 Arduino上的辩论赛计时器 - iDemkors第一个GitHub仓库
 
 ### CONCLUSION
 + This is an experimental Arduino project "Beta". An Ocrobot MEGA 2560 board (an alternative to Arduino Mega 2560) with variants of hardware modules is programmed to make the timer.
-+ The currently developed version of .ino source program is Beta 4. 2 RGB LEDs and a buzzer will be added on the base of Beta 3.
++ The currently developed version of .ino source program is Beta 5.
++ The Chinese version of this document will be unveiled after uploading a blog system to my GitHub.
 + More details will be announced gradually. If any mistake in this document or in the code is committed, please contact me.
 
 ### SYSTEM REQUIREMENT (by default)
-* HARDWARE
-  + Arduino (Genuino or other compatible vendors) MEGA 2560 board;
-  + LCD 2004 screen (those with I2C support is RECOMMENDED);
-  + MAX7219-based 8-digit LED module;
-  + 6 individual LEDs (2\*red/2\*yellow/2\*green) OR 2 RGB LEDs;
+* ESSENTIAL HARDWARE (for Beta 3)
+  + An Arduino (Genuino or other compatible vendors) Mega 2560 board;
+  + An LCD 2004 screen (those with I2C support is RECOMMENDED);
+  + A MAX7219-based 8-digit LED module;
   + 2 or 3 groups of a button, a 1N4148 diode, and a 100nF capacitor;
   + A breadboard and wires.
-  (Nokia 5110 screen and EEPROM support may be added in the future versions...)
+
+* ADDITIONAL HARDWARE (Beta 4 or later)
+  + 6 individual LEDs (2\*red/2\*yellow/2\*green) OR 2 RGB LEDs;
+  + A source-less buzzer;
+  + A DS3231-based real-time clock module. (Maybe Beta 6?)
+  +  (Nokia 5110 screen and EEPROM support may be added in the future versions...)
 
 * LIBRARIES
   + [LedControl](http://wayoda.github.io/LedControl/) (by Eberhard Fahle)
@@ -27,9 +32,9 @@ Arduino上的辩论赛计时器 - iDemkors第一个GitHub仓库
 The available I/O pins on a UNO board may not be enough for the system. Here are the solutions:
 
   1. Use 2 RGB LEDs instead of 6 separate LEDs. 4 pins should be enough to generate red, green, and yellow lights for both sides.
-  2. Use an LCD 2004/1602 screen via I2C bus, that requires only 2 I/O pins. **Remember to load "Software I2C" library.**
+  2. Use an LCD 2004/1602 screen via I2C bus, that requires only 2 I/O pins. 
   3. Versions requiring 2 buttons (Beta 3 & 4) can be considered.
-  4. Modify the code to save a public pin (ANY_BUTTON_PRESSED) that check whether one of the buttons is being pressed.
+  4. Modify the code to save a public pin `ANY_BUTTON_PRESSED` that check whether one of the buttons is being pressed.
   5. Switch to a Mega board -- the easiest way!
 
 ### If you are using an LCD 1602...
@@ -42,11 +47,16 @@ And a capacitor can improve the stability when checking whether a button is bein
 Taking advantage of them is RECOMMENDED, though.
 
 ## HISTORY
-### Update Beta 1 & 2 (10 Mar, 2016)
-Beta 1 is written for the test of an 8-digit LED module and an 8*8 LED matrix, both based on MAX7219 chip. It will light all the LEDs available.  
-Beta 2, adding a button on the base of Beta 1, is designed to test 2 timers using built-in functions ("millis"), with a button to switch the timer to run.
+### Beta 0 (Test_MAX7219) (26 Dec, 2015)
+Just test an 8-digit display and an 8*8 LED matrix (both based on MAX7219).
 
+### Update Beta 1 & 2 (27 Dec & 29 Dec, 2015)
+Beta 1 aims to test the built-in timer and show a timer on the 8-digit display (reset to 0 when exceeding 999.9s). The 8*8 matrix works identically to Beta 0.
+Beta 2, adding a button on the base of Beta 1, is designed to test 2 timers using built-in functions `millis`, with a button to switch the timer to run.
+
+*(then 3 months passed unconsciously QAQ)*
 ### Update Beta 3, the first available version (11 Mar, 2016)
+![Beta 3](http://ww3.sinaimg.cn/large/62fb934ajw1f1ru985pt8j21kw0w07pp.jpg)
 I wrote the whole basic structure of the system on a piece of paper directly. And "translated" it into code once. And slightly adjusted the code 5 times. And it works!  
 In the interest of checking the availability of the basic structure, I minimized the hardware requirement to only 4 parts:
 
@@ -58,4 +68,31 @@ In the interest of checking the availability of the basic structure, I minimized
 The 8*8 LED matrix will no longer be used since this version. Other "required" hardware modules would be added in the next versions.  
 But, why not have a try?(⊙▽⊙)
 
-### Beta 4 has been under development (13 Mar, 2016)
+### Beta 4, with enhanced experience (20 Mar, 2016)
+> Space occupation: 10,294 bytes  
+Memory allocation: 757 bytes  
+Digital pins required: 14 (8 PWM, 4 Analog In, a pair of SPI connectors)
+
+![Beta 4](http://ww1.sinaimg.cn/large/62fb934ajw1f24anqstlxj21kw0w01f6.jpg)
+***New features:***
+
+  + 2 RGB LEDs (Common-Anode type)
+  + A source-less buzzer module
+  + The third button (yet to be used), paired with a diode & a capacitor
+  + ...and *MORE* wires
+
+The LEDs and the buzzer provide a better experience of time notification: 
+
+  * Once starting the speech, the light corresponding to current side will turn *green*;
+  * When the time remains just below 30 seconds, it turns *yellow*;
+  * When the time runs out, it turns *red*.
+  * The buzzer will *beep* in different frequency or period following the light turning.
+
+And *an "extra" stage* (Audience Q&A) is added, which don't need timers. Lights and the 8-digit display will be cleared when entering "extra" stages.
+
+***Known issues:***
+
+Through the test, I found the supply current via USB port increased to 240~260mA, double to Beta 3... And when using USB power supply, the buzzer did not "stop" -- playing a noise louder than "stopped" properly. I measured the buzzer's supply current when it's "stopped" -- 130mA! Probably there's problem with my buzzer...  
+To "stop" the buzzer properly and ensure the stability of the system, **a 9/12V DC adaptor** is recommended to power the system.
+
+### You expect Beta 5? It won't be unveiled until next weekend
