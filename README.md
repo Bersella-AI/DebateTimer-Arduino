@@ -51,7 +51,7 @@ Taking advantage of them is RECOMMENDED, though.
 Just test an 8-digit display and an 8*8 LED matrix (both based on MAX7219).
 
 ### Update Beta 1 & 2 (27 Dec & 29 Dec, 2015)
-Beta 1 aims to test the built-in timer and show a timer on the 8-digit display (reset to 0 when exceeding 999.9s). The 8*8 matrix works identically to Beta 0.
+Beta 1 aims to test the built-in timer and show a timer on the 8-digit display (reset to 0 when exceeding 999.9s).  
 Beta 2, adding a button on the base of Beta 1, is designed to test 2 timers using built-in functions `millis`, with a button to switch the timer to run.
 
 *(then 3 months passed unconsciously QAQ)*
@@ -81,7 +81,7 @@ Digital pins required: 14 (8 PWM, 4 Analog In, a pair of SPI connectors)
   + The third button (yet to be used), paired with a diode & a capacitor
   + ...and *MORE* wires
 
-The LEDs and the buzzer provide a better experience of time notification: 
+The LEDs and the buzzer provide a better experience to prompt the time keeper more intuitively: 
 
   * Once starting the speech, the light corresponding to current side will turn *green*;
   * When the time remains just below 30 seconds, it turns *yellow*;
@@ -92,7 +92,18 @@ And *an "extra" stage* (Audience Q&A) is added, which don't need timers. Lights 
 
 ***Known issues:***
 
-Through the test, I found the supply current via USB port increased to 240~260mA, double to Beta 3... And when using USB power supply, the buzzer did not "stop" -- playing a noise louder than "stopped" properly. I measured the buzzer's supply current when it's "stopped" -- 130mA! Probably there's problem with my buzzer...  
+Through the test, I found the supply current via USB port increased to 240~260mA, double to Beta 3... And **when using USB power supply, the buzzer did not "stop"** -- playing a noise louder than "stopped" properly. I measured the buzzer's supply current when it's "stopped" -- 130mA! Probably there's problem with my buzzer...  
 To "stop" the buzzer properly and ensure the stability of the system, **a 9/12V DC adaptor** is recommended to power the system.
 
-### You expect Beta 5? It won't be unveiled until next weekend
+*(Too busy to optimize...)*
+
+### Beta 5 has been released (27 Apr, 2016)
+This is a minor update. ONLY requires an extra button.
+> Space occupation: 10,424 bytes  
+Memory allocation: 685 bytes
+
+  * Enabled the LEFT button, to switch *backwards*.
+  * Adjusted the position of starting "beep"; the buzzer will beep after the welcome titles are shown. *But the issue in Beta 4 remains unsolved...*
+  * Moved the contents of welcome titles `START_TITLE` , only shown once in overall execution, from RAM to Flash; and read the contents from Flash. This reduced the usage of RAM by 72 bytes (compared to Beta 4). A good experiment...
+
+### Beta 6 won't be unveiled until my blog system is uploaded (maybe 1 month later) :P
