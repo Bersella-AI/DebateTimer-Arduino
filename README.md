@@ -35,6 +35,7 @@ Arduino上的辩论赛计时器 - iDemkors第一个GitHub仓库
   + [LedControl](http://wayoda.github.io/LedControl/) (by Eberhard Fahle)
   + [LiquidCrystal_I2C](https://github.com/marcoschwartz/LiquidCrystal_I2C) (by Marco Schwartz)
   + [EEPROM](https://www.arduino.cc/en/Reference/EEPROM) (Built-in library) (Beta 6)
+
 ### Default Settings 
 POS = Positive  
 NEG = Negative  
