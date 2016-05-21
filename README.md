@@ -39,17 +39,20 @@ Arduino上的辩论赛计时器 - iDemkors第一个GitHub仓库
 POS = Positive  
 NEG = Negative  
 When stages following requires both sides to speak, the system will indicate which side should start the speech. 
->  01. 1st Statement - POS 150s  
-02. 1st Statement - NEG 150s   
-03. 2nd Attack Defense - POS 90s  
-04. 2nd Attack Defense - NEG 90s  
-05. 3rd Attack Defense - POS 90s  
-06. 3rd Attack Defense - NEG 90s    
-07. 1st Conclusion - POS 90s  
-08. 1st Conclusion - NEG 90s  
-09. Free Debate - NEG  240s  
-10. Final Conclusion - NEG 180s  
-11. Final Conclusion - POS 180s
+
+> 01. 1st Statement - POS 150s
+> 02. 1st Statement - NEG 150s
+> 03. 2nd Attack Defense - POS 90s
+> 04. 2nd Attack Defense - NEG 90s
+> 05. 3rd Attack Defense - POS 90s
+> 06. 3rd Attack Defense - NEG 90s
+> 07. 1st Conclusion - POS 90s
+> 08. 1st Conclusion - NEG 90s
+> 09. Free Debate - NEG  240s
+> 10. Final Conclusion - NEG 180s
+> 11. Final Conclusion - POS 180s
+
+
 ### How to use the system (Beta 6 for example)
 1. Connect the necessary hardware to your Arduino (compatible) board.
   + The right RGB LED (for Negative) takes Pin 3 (Green) and 4 (Red).
@@ -99,3 +102,25 @@ See [Change Log](https://github.com/iDemkors/DebateTimer-Arduino/blob/master/Cha
 [MIT](https://github.com/iDemkors/DebateTimer-Arduino/blob/master/LICENSE.md)
 
 ![Its me](http://ww1.sinaimg.cn/large/62fb934ajw1f42vsx2wm6j20j60f8wha.jpg)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
